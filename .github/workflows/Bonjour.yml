@@ -7,4 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3 # Récupère le contenu du dépôt correspondant au commit du workflow en cours
       - run: ls -l # Liste les fichier du répertoire courant
+      - run: |
+          sudo apt-get update
+          sudo apt-get install --yes cowsay
       - run: cat README.md | cowsay # Affiche le contenu du fichier `README.md` à la base du dépôt
