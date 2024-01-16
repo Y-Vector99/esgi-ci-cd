@@ -4,10 +4,12 @@ on:
 jobs:
   dire_bonjour:
     runs-on: ubuntu-22.04
+    env:
+      IMAGE_NAME: dockerci:1.0.0
     steps:
-      - uses: actions/checkout@v3 # Récupère le contenu du dépôt correspondant au commit du workflow en cours
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: hadolint/hadolint-action@v3.1.0
         with:
-          node-version: v19.0.0
-      - run: npm install
-      - run: npm run lint
+          dockerfile: ./Dockerfile
+      - run: docker build -t $IMAGE_NAME ./
+      - run: docker container run --rm $IMAGE_NAME npm run lint
