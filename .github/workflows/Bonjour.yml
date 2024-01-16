@@ -12,4 +12,4 @@ jobs:
         with:
           dockerfile: ./Dockerfile
       - run: docker build -t $IMAGE_NAME ./
-      - run: docker container run --rm $IMAGE_NAME --volume="$(pwd)":"$(pwd)" --workdir="$(pwd)" npm run lint
+      - run: docker container run --rm $IMAGE_NAME npm run lint
